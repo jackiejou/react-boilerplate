@@ -12,21 +12,36 @@
 import { fromJS } from 'immutable';
 
 import {
-  CHANGE_USERNAME,
+  CHANGE_MESSAGE,
+  SAVE_MESSAGE,
+  SAVE_SUCCESS,
+  SAVE_ERROR,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  username: '',
+  message: '',
+  loading: false,
+  error: false,
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-
-      // Delete prefixed '@' from the github username
+    case CHANGE_MESSAGE:
       return state
-        .set('username', action.name.replace(/@/gi, ''));
+        .set('message', action.msg);
+    case SAVE_MESSAGE:
+      return state
+        .set('loading', true);
+    case SAVE_SUCCESS:
+      return state
+        .set('message', '')
+        .set('loading', false)
+        .set('error', false);
+    case SAVE_ERROR:
+      return state
+        .set('loading', false)
+        .set('error', true);
     default:
       return state;
   }

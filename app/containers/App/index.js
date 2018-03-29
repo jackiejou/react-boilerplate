@@ -37,7 +37,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/messages" component={FeaturePage} />
+        <Route path="/bottle" component={FeaturePage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </AppWrapper>

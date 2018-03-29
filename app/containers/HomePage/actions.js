@@ -16,7 +16,10 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  CHANGE_MESSAGE,
+  SAVE_MESSAGE,
+  SAVE_SUCCESS,
+  SAVE_ERROR,
 } from './constants';
 
 /**
@@ -26,9 +29,28 @@ import {
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function changeUsername(name) {
+export function changeMessage(msg) {
   return {
-    type: CHANGE_USERNAME,
-    name,
+    type: CHANGE_MESSAGE,
+    msg,
+  };
+}
+
+export function saveMessage() {
+  return {
+    type: SAVE_MESSAGE,
+  };
+}
+
+export function saveSuccess() {
+  return {
+    type: SAVE_SUCCESS,
+  };
+}
+
+export function saveError(error) {
+  return {
+    type: SAVE_ERROR,
+    error,
   };
 }

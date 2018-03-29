@@ -13,36 +13,18 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
 import Form from './Form';
 import Input from './Input';
-import Section from './Section';
-import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
+import { changeMessage, saveMessage } from './actions';
+import { makeSelectMessage, makeSelectError } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import SuccessMessage from '../../components/SuccessMessage/index';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-  }
-
   render() {
-    const { loading, error, repos } = this.props;
-    const reposListProps = {
-      loading,
-      error,
-      repos,
-    };
-
+    const { error } = this.props;
     return (
       <article>
         <Helmet>
@@ -50,23 +32,21 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div>
-          <Section>
-            <H2>
-              Save a message
-            </H2>
-            <Form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="Enter a message"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
-                />
-              </label>
-            </Form>
-            <ReposList {...reposListProps} />
-          </Section>
+          <H2>
+            Save a message
+          </H2>
+          <Form onSubmit={this.props.onSubmitForm}>
+            <label htmlFor="message">
+              <Input
+                id="message"
+                type="text"
+                placeholder="Enter a message"
+                value={this.props.message}
+                onChange={this.props.onChangeMessage}
+              />
+            </label>
+          </Form>
+          <SuccessMessage error={error} />
         </div>
       </article>
     );
@@ -74,34 +54,24 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.bool,
-  ]),
-  repos: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.bool,
-  ]),
+  message: PropTypes.string,
+  error: PropTypes.bool,
+  onChangeMessage: PropTypes.func,
   onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
-  onChangeUsername: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onChangeMessage: (evt) => dispatch(changeMessage(evt.target.value)),
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
+      dispatch(saveMessage());
     },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: makeSelectRepos(),
-  username: makeSelectUsername(),
-  loading: makeSelectLoading(),
+  message: makeSelectMessage(),
   error: makeSelectError(),
 });
 

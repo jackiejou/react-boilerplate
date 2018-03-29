@@ -9,4 +9,7 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const CHANGE_MESSAGE = 'messageBottle/Home/CHANGE_MESSAGE';
+export const SAVE_MESSAGE = 'messageBottle/Home/SAVE_MESSAGE';
+export const SAVE_SUCCESS = 'messageBottle/Home/SAVE_SUCCESS';
+export const SAVE_ERROR = 'messageBottle/Home/SAVE_ERROR';
