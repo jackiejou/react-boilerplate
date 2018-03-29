@@ -17,14 +17,14 @@ import H2 from 'components/H2';
 import Form from './Form';
 import Input from './Input';
 import { changeMessage, saveMessage } from './actions';
-import { makeSelectMessage, makeSelectError } from './selectors';
+import { makeSelectMessage, makeSelectError, makeSelectSuccess } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import SuccessMessage from '../../components/SuccessMessage/index';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { error } = this.props;
+    const { success, error } = this.props;
     return (
       <article>
         <Helmet>
@@ -46,7 +46,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
               />
             </label>
           </Form>
-          <SuccessMessage error={error} />
+          <SuccessMessage success={success} error={error} />
         </div>
       </article>
     );
@@ -55,6 +55,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
 HomePage.propTypes = {
   message: PropTypes.string,
+  success: PropTypes.bool,
   error: PropTypes.bool,
   onChangeMessage: PropTypes.func,
   onSubmitForm: PropTypes.func,
@@ -72,6 +73,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   message: makeSelectMessage(),
+  success: makeSelectSuccess(),
   error: makeSelectError(),
 });
 

@@ -11,6 +11,11 @@ const makeSelectMessage = () => createSelector(
   (homeState) => homeState.get('message')
 );
 
+const makeSelectSuccess = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('success')
+);
+
 const makeSelectError = () => createSelector(
   selectHome,
   (homeState) => homeState.get('error')
@@ -19,5 +24,6 @@ const makeSelectError = () => createSelector(
 export {
   selectHome,
   makeSelectMessage,
+  makeSelectSuccess,
   makeSelectError,
 };

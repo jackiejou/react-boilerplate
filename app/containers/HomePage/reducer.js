@@ -22,6 +22,7 @@ import {
 const initialState = fromJS({
   message: '',
   loading: false,
+  success: false,
   error: false,
 });
 
@@ -37,10 +38,12 @@ function homeReducer(state = initialState, action) {
       return state
         .set('message', '')
         .set('loading', false)
+        .set('success', true)
         .set('error', false);
     case SAVE_ERROR:
       return state
         .set('loading', false)
+        .set('success', false)
         .set('error', true);
     default:
       return state;
