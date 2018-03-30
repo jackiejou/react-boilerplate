@@ -7,12 +7,12 @@ import 'whatwg-fetch';
  *
  * @return {object}          The parsed JSON from the request
  */
-function parseJSON(response) {
-  if (response.status === 204 || response.status === 205) {
-    return null;
-  }
-  return response.json();
-}
+// function parseJSON(response) {
+//   if (response.status === 204 || response.status === 205) {
+//     return null;
+//   }
+//   return response.json();
+// }
 
 /**
  * Checks if a network request came back fine, and throws an error if not
@@ -41,6 +41,5 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
   return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON);
+    .then(checkStatus);
 }

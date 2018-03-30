@@ -56,7 +56,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 HomePage.propTypes = {
   message: PropTypes.string,
   success: PropTypes.bool,
-  error: PropTypes.bool,
+  error: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ]),
   onChangeMessage: PropTypes.func,
   onSubmitForm: PropTypes.func,
 };

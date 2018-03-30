@@ -7,7 +7,7 @@ import { makeSelectMessage } from './selectors';
 
 export function* addMessage() {
   const message = yield select(makeSelectMessage());
-  const requestURL = 'http://127.0.0.1:3000/post';
+  const requestURL = 'http://127.0.0.1:3000/get';
   const options = {
     headers: {
       'Content-Type': 'application/json',

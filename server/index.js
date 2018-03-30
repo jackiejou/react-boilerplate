@@ -1,18 +1,36 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const logger = require('./logger');
 
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
+const { addMessage, showAllMessages } = require('../db/index');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+app.post('/post', (req, res) => {
+  addMessage(req.body.message).then(() => {
+    res.sendStatus(201);
+  }).catch(() => {
+    res.sendStatus(500);
+  });
+});
+app.get('/get', (req, res) => {
+  showAllMessages().then((result) => {
+    res.sendStatus(200).json(result);
+  }).catch(() => {
+    res.sendStatus(500);
+  });
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

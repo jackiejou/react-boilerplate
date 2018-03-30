@@ -6,7 +6,7 @@ import Wrapper from './Wrapper';
 function SuccessMessage(props) {
   let content = (<div></div>);
   if (props.error) {
-    content = 'Message save error';
+    content = JSON.stringify(props.error);
   }
   if (props.success) {
     content = 'Message saved success!';
@@ -19,7 +19,10 @@ function SuccessMessage(props) {
 }
 
 SuccessMessage.propTypes = {
-  error: PropTypes.bool,
+  error: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ]),
   success: PropTypes.bool,
 };
 
