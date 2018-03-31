@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const List = styled.div`
-  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-family: 'FreeMono', monospace;
   padding: 10px;
-  background-color: #8ec0fd;
+  background-color: #41ADDD;
   border-radius: 10px;
   overflow: auto;
   max-height: 80vh;

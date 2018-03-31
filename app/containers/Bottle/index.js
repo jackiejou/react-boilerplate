@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-
+import H2 from 'components/H2';
 import { getMessages } from './actions';
 import { makeSelectAllMessages, makeSelectError } from './selectors';
 import reducer from './reducer';
@@ -34,17 +34,15 @@ export class Bottle extends React.PureComponent { // eslint-disable-line react/p
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
         <div>
-          Saved messages
-            <List>
-              {(this.props.messages.messages) ? (
-                this.props.messages.messages.map((msg) =>
-                  <ListItem key={msg.id}> {msg.message} </ListItem>
-                )
-              ) : (
-                <p>{error}</p>
-              )
-              }
-            </List>
+          <H2>
+            Saved messages
+          </H2>
+          <List>
+            {(this.props.messages.messages) ?
+              this.props.messages.messages.map((msg) => <ListItem key={msg.createdAt}> {msg.message} </ListItem>) :
+              <ListItem>{error}</ListItem>
+            }
+          </List>
         </div>
       </article>
     );
