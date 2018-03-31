@@ -17,6 +17,7 @@
 
 import {
   GET_MESSAGES,
+  GET_SUCCESS,
   GET_ERROR,
 } from './constants';
 
@@ -27,14 +28,20 @@ import {
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function changeMessage(msg) {
+export function getMessages() {
   return {
     type: GET_MESSAGES,
-    msg,
   };
 }
 
-export function saveError(error) {
+export function getSuccess(messages) {
+  return {
+    type: GET_SUCCESS,
+    messages,
+  };
+}
+
+export function getError(error) {
   return {
     type: GET_ERROR,
     error,

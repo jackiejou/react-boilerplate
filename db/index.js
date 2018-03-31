@@ -11,7 +11,7 @@ const bottleSchema = mongoose.Schema({ message: String, createdAt: Date });
 
 const Bottle = mongoose.model('Bottle', bottleSchema);
 
-const showAllMessage = () => Bottle.find().sort('-createdAt');
+const showAllMessages = () => Bottle.find().sort('-createdAt');
 
 const addMessage = (msg) => Bottle.create({
   message: msg,
@@ -19,6 +19,6 @@ const addMessage = (msg) => Bottle.create({
 });
 
 module.exports = {
-  showAllMessage,
+  showAllMessages,
   addMessage,
 };

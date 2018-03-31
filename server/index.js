@@ -26,7 +26,7 @@ app.post('/post', (req, res) => {
 });
 app.get('/get', (req, res) => {
   showAllMessages().then((result) => {
-    res.sendStatus(200).json(result);
+    res.json(result);
   }).catch(() => {
     res.sendStatus(500);
   });

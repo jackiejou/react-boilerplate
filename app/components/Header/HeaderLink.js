@@ -16,10 +16,11 @@ export default styled(Link)`
   font-weight: bold;
   font-size: 16px;
   border: 2px solid #41ADDD;
-  color: #41ADDD;
+  color: white;
+  background: #41ADDD;
 
   &:hover {
-    background: #41ADDD;
-    color: #FFF;
+    background: white;
+    color: #41ADDD;
   }
 `;

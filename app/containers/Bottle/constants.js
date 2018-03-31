@@ -10,4 +10,5 @@
  */
 
 export const GET_MESSAGES = 'messageBottle/Bottle/GET_MESSAGES';
+export const GET_SUCCESS = 'messageBottle/Bottle/GET_SUCCESS';
 export const GET_ERROR = 'messageBottle/Bottle/GET_ERROR';

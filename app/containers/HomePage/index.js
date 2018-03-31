@@ -21,6 +21,7 @@ import { makeSelectMessage, makeSelectError, makeSelectSuccess } from './selecto
 import reducer from './reducer';
 import saga from './saga';
 import SuccessMessage from '../../components/SuccessMessage/index';
+import Container from './Container';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -31,7 +32,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <title>Home Page</title>
           <meta name="description" content="A React.js Boilerplate application homepage" />
         </Helmet>
-        <div>
+        <Container>
           <H2>
             Save a message
           </H2>
@@ -47,7 +48,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             </label>
           </Form>
           <SuccessMessage success={success} error={error} />
-        </div>
+        </Container>
       </article>
     );
   }

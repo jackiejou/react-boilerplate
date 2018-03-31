@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import request from 'utils/request';
+import { request } from 'utils/request';
 
 import { SAVE_MESSAGE } from './constants';
 import { saveSuccess, saveError } from './actions';
