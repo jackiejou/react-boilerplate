@@ -2,14 +2,20 @@ import { fromJS } from 'immutable';
 
 import homeReducer from '../reducer';
 import {
-  changeUsername,
+  changeMessage,
+  saveMessage,
+  saveSuccess,
+  saveError,
 } from '../actions';
 
 describe('homeReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
-      username: '',
+      message: '',
+      loading: false,
+      success: false,
+      error: false,
     });
   });
 
@@ -18,10 +24,26 @@ describe('homeReducer', () => {
     expect(homeReducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should handle the changeUsername action correctly', () => {
-    const fixture = 'mxstbr';
-    const expectedResult = state.set('username', fixture);
+  it('should handle the changeMessage action correctly', () => {
+    const fixture = 'testing';
+    const expectedResult = state.set('message', fixture);
 
-    expect(homeReducer(state, changeUsername(fixture))).toEqual(expectedResult);
+    expect(homeReducer(state, changeMessage(fixture))).toEqual(expectedResult);
+  });
+  it('should handle the saveMessage action correctly', () => {
+    const expectedResult = state.set('loading', true);
+
+    expect(homeReducer(state, saveMessage())).toEqual(expectedResult);
+  });
+  it('should handle the saveSuccess action correctly', () => {
+    const expectedResult = state.set('success', true);
+
+    expect(homeReducer(state, saveSuccess())).toEqual(expectedResult);
+  });
+  it('should handle the saveError action correctly', () => {
+    const fixture = {};
+    const expectedResult = state.set('error', fixture);
+
+    expect(homeReducer(state, saveError(fixture))).toEqual(expectedResult);
   });
 });

@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import {
   selectHome,
-  makeSelectUsername,
+  makeSelectMessage,
 } from '../selectors';
 
 describe('selectHome', () => {
@@ -17,15 +17,15 @@ describe('selectHome', () => {
   });
 });
 
-describe('makeSelectUsername', () => {
-  const usernameSelector = makeSelectUsername();
-  it('should select the username', () => {
-    const username = 'mxstbr';
+describe('makeSelectMessage', () => {
+  const messageSelector = makeSelectMessage();
+  it('should select the message', () => {
+    const message = 'test123';
     const mockedState = fromJS({
       home: {
-        username,
+        message,
       },
     });
-    expect(usernameSelector(mockedState)).toEqual(username);
+    expect(messageSelector(mockedState)).toEqual(message);
   });
 });
